@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.firebaseprueba_23_02.MainActivity">
+
+    <Button
+        android:id="@+id/btnparte1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parte1"
+        android:onClick="clickparte1"/>
+
+    <Button
+        android:id="@+id/btnejercicio1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ejercicio 1"
+        android:onClick="clickbtnejercicio1"/>
+
+    <Button
+        android:id="@+id/btnparte2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parte2"
+        android:onClick="clickparte2"/>
+
+</LinearLayout>

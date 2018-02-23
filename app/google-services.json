@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "297113492268",
+    "firebase_url": "https://proyecto-prueba-jugadores.firebaseio.com",
+    "project_id": "proyecto-prueba-jugadores",
+    "storage_bucket": "proyecto-prueba-jugadores.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297113492268:android:a90c9decdf3bbb0c",
+        "android_client_info": {
+          "package_name": "com.example.firebaseprueba_23_02"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297113492268-i3cppmerr19ehlf202ok8g33g47fmuk5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.firebaseprueba_23_02",
+            "certificate_hash": "5bab5e8de83e28b156e3a2cd26a82215e9b38f94"
+          }
+        },
+        {
+          "client_id": "297113492268-sddhmjc1f2aecfjfi38j3ojlbg61qpjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChNVYkRXwlpY-ohNL2Y8SkFLgLbof18ZE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297113492268-sddhmjc1f2aecfjfi38j3ojlbg61qpjk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
