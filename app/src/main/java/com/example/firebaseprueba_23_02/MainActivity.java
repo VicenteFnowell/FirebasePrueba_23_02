@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     public void clickparte2 (View view){
         Intent i=new Intent(getApplicationContext(),ListviewjugadorActivity.class);
         startActivity(i);
+
+    }
+    public void clickparte3 (View view){
+        Intent i=new Intent(getApplicationContext(),Parte3Activity.class);
+        startActivity(i);
     }
 
 

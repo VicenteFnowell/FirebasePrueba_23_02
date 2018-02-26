@@ -2,13 +2,16 @@ package com.example.firebaseprueba_23_02;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,7 +32,6 @@ public class ListviewjugadorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listviewjugador);
 
-        cargarDatos();
 
         lvjugadores=(ListView)findViewById(R.id.listjugadores);
 
@@ -44,6 +46,27 @@ public class ListviewjugadorActivity extends AppCompatActivity {
     }//FIn OnCreate
 
 
+    private void  cargarDatosFirebase(){
+        dbRef = FirebaseDatabase.getInstance().getReference().child("jugadores");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                lista_jugadores.clear();
+                for (DataSnapshot jugadoresDataSnapshot: dataSnapshot.getChildren()){
+                    cargarListView(jugadoresDataSnapshot);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("ActivityParte2","DATABASE ERROR");
+
+            }
+        };
+        dbRef.addValueEventListener(valueEventListener);
+
+    }
 
 
     private void cargarListView (DataSnapshot dataSnapshot){
