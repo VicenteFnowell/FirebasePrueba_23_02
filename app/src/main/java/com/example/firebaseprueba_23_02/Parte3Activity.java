@@ -35,7 +35,7 @@ public class Parte3Activity extends AppCompatActivity {
         etSueldo = (EditText)findViewById(R.id.etsueldo2);
         spIdJugador = (Spinner)findViewById(R.id.spidjugador);
 
-        String [] jugadoresfutbol = {"Selecciona","j1","j2","j3","j4","j5"};
+        String [] jugadoresfutbol = {"Selecciona","j1","j2","j3","j4","j5","j6"};
         ArrayAdapter<String> jugador = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,jugadoresfutbol);
         spIdJugador.setAdapter(jugador);
 
@@ -57,10 +57,12 @@ public class Parte3Activity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     CJugador jug = dataSnapshot.getValue(CJugador.class);
-                    etNombre.setText(jug.getNombre());
-                    etDorsal.setText(jug.getDorsal()+"");
-                    etPosicion.setText(jug.getPosicion());
-                    etSueldo.setText(jug.getSueldo()+"");
+                    if (jug != null){
+                        etNombre.setText(jug.getNombre());
+                        etDorsal.setText(jug.getDorsal()+"");
+                        etPosicion.setText(jug.getPosicion());
+                        etSueldo.setText(jug.getSueldo()+"");
+                    }
 
                 }
 
@@ -76,18 +78,112 @@ public class Parte3Activity extends AppCompatActivity {
         }
 
     }
-/*
-    public void clickbtninsertar (View view){
+
+    public void clickbtninsertar(View view){
         String nombre = etNombre.getText().toString();
-        String dorsal = etDorsal.getText()
+        String strDorsal = etDorsal.getText().toString();
+        String posicion = etPosicion.getText().toString();
+        String strSueldo = etSueldo.getText().toString();
+
+        if(nombre.equals("")||strDorsal.equals("")||posicion.equals("")||strSueldo.equals("")){
+            Toast.makeText(getApplicationContext(),"Rellena todos los campos",Toast.LENGTH_LONG).show();
+        }else{
+            int dorsal = Integer.parseInt(strDorsal);
+            double sueldo = Double.parseDouble(strSueldo);
+            CJugador nuevoJugador=new CJugador(nombre,dorsal,posicion,sueldo);
+            dbRef = FirebaseDatabase.getInstance().getReference()
+                    .child("jugadores");
+
+            //String nueva_clave = dbRef.push().setValue(nuevoJugador, new DatabaseReference.CompletionListener(){
+            dbRef.child("j6").setValue(nuevoJugador, new DatabaseReference.CompletionListener(){
+
+                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                    if(error == null) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "INSERTADO CORRECTAMENTE",
+                                Toast.LENGTH_LONG).show();
+
+                        limpiarformulario();
+                    }else {
+                        Toast.makeText(getApplicationContext(),
+                                "NO SE PUEDE INSETAR EL JUGADOR",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+        }
+    }
+
+
+    public void clickbtnmodificar(View view){
+        String nombre = etNombre.getText().toString();
+        String strDorsal = etDorsal.getText().toString();
+        String posicion = etPosicion.getText().toString();
+        String strSueldo = etSueldo.getText().toString();
+
+        if(nombre.equals("")||strDorsal.equals("")||posicion.equals("")||strSueldo.equals("")){
+            Toast.makeText(getApplicationContext(),"Rellena todos los campos",Toast.LENGTH_LONG).show();
+        }else{
+            int dorsal = Integer.parseInt(strDorsal);
+            double sueldo = Double.parseDouble(strSueldo);
+            CJugador nuevoJugador=new CJugador(nombre,dorsal,posicion,sueldo);
+            dbRef = FirebaseDatabase.getInstance().getReference()
+                    .child("jugadores");
+
+            String idSeleccionada = spIdJugador.getSelectedItem().toString();
+            //String nueva_clave = dbRef.push().setValue(nuevoJugador, new DatabaseReference.CompletionListener(){
+            dbRef.child(idSeleccionada).setValue(nuevoJugador, new DatabaseReference.CompletionListener(){
+
+                public void onComplete(DatabaseError error, DatabaseReference ref) {
+                    if(error == null) {
+
+                        Toast.makeText(getApplicationContext(),
+                                "INSERTADO CORRECTAMENTE",
+                                Toast.LENGTH_LONG).show();
+                                limpiarformulario();
+                    }else {
+                        Toast.makeText(getApplicationContext(),
+                                "NO SE PUEDE INSETAR EL JUGADOR",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+        }
+    }
+
+    public void clickbtneliminar (View view){
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("jugadores");
+
+        String idSeleccionada = spIdJugador.getSelectedItem().toString();
+        dbRef.child(idSeleccionada).removeValue(new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if(databaseError == null){
+                    Toast.makeText(getApplicationContext(),"ELIMINADO CORRECTAMENTE",Toast.LENGTH_LONG).show();
+                    limpiarformulario();
+                }else{
+                    Toast.makeText(getApplicationContext(),"NO SE PUEDE ELIMINAR EL JUGADOR",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+    }
+
+    private void limpiarformulario(){
+        etNombre.setText("");
+        etDorsal.setText("");
+        etPosicion.setText("");
+        etSueldo.setText("");
 
 
     }
 
 
 
-
-
-*/
 
         }//FIN ACTIVITY

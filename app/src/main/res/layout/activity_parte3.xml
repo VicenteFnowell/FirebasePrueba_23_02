@@ -70,11 +70,13 @@
         android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modificar" />
+        android:text="Modificar"
+        android:onClick="clickbtnmodificar"/>
 
     <Button
         android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eliminar" />
+        android:text="Eliminar"
+        android:onClick="clickbtneliminar"/>
 </LinearLayout>
